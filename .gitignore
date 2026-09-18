@@ -1,0 +1,158 @@
+# ------------------------
+# C++ — результаты сборки
+# ------------------------
+# Объектные файлы
+*.o
+*.obj
+*.lo
+*.slo
+
+# Исполняемые файлы
+*.exe
+*.out
+*.app
+*.bin
+
+# Библиотеки
+*.a
+*.lib
+*.so
+*.so.*
+*.dll
+*.dylib
+*.la
+*.lai
+
+# Отладочная информация
+*.pdb
+*.idb
+*.ilk
+*.dSYM/
+*.su
+
+# Папки сборки
+build/
+Build/
+bin/
+Bin/
+obj/
+Obj/
+out/
+Out/
+Debug/
+Release/
+x64/
+x86/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.make
+
+# ------------------------
+# Python — результаты сборки и кэш
+#  ------------------------
+# Байт-код
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Дистрибутивы / упаковка
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Виртуальные окружения
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# Тестирование
+.pytest_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ------------------------
+# IDE и редакторы
+# ------------------------
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.project
+.classpath
+.settings/
+
+# ------------------------
+# Операционные системы
+# ------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ------------------------
+# Секреты и конфиденциальные данные
+# ------------------------
+# Токены Telegram-бота и ключи API
+.env
+*.env
+config.local.*
+secrets.*
+*.key
+*.pem
+!*.pub
+
+# ------------------------
+# Логи и временные файлы
+# ------------------------
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+*.bak
