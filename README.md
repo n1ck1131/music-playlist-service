@@ -13,11 +13,11 @@
 
 ## Структура репозитория
 music-playlist-service/
-├── cpp/ # Консольное ядро на C++
-├── python/ # Telegram-бот
-├── docs/ # Документация
-├── .gitignore
-└── README.md
+--- cpp/ # Консольное ядро на C++
+--- python/ # Telegram-бот
+--- docs/ # Документация
+--- .gitignore
+--- README.md
 
 ## Сборка и запуск (планируется)
 
@@ -36,4 +36,23 @@ python -m venv .venv
 pip install -r requirements.txt
 python -m bot.main
 
+-----------------------------
+## Lab 02 — Classes, composition and aggregation
 
+Три класса предметной области:
+
+- `AudioFile` — часть трека (композиция).
+- `Track` — трек, владеет своим аудиофайлом.
+- `Playlist` — агрегирует треки, созданные снаружи.
+
+### Связи
+
+- **Композиция**: `Track` → `AudioFile` (поле по значению). При уничтожении трека аудиофайл уничтожается автоматически.
+- **Агрегация**: `Playlist` → `Track*` (указатели). Удаление плейлиста не удаляет треки.
+
+### Сборка и запуск
+
+```bash
+cmake -S . -B build
+cmake --build build
+./build/lab02
