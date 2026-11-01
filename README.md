@@ -52,7 +52,6 @@ python -m bot.main
 
 ### Сборка и запуск
 
-```bash
 cmake -S . -B build
 cmake --build build
 ./build/lab02
@@ -72,7 +71,6 @@ No `new` or `delete` remains in the project.
 
 ### Build & run
 
-```bash
 cmake -S . -B build
 cmake --build build
 ./build/lab03            # Linux / macOS
