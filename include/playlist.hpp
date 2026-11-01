@@ -4,6 +4,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <memory>
 #include <string>
 #include <string_view>
 #include <vector>
@@ -31,8 +32,8 @@ private:
     PlaylistState m_state{ PlaylistState::eDraft };
     std::size_t m_trackLimit{ DEFAULT_TRACK_LIMIT };
 
-    // Агрегация: указатели на треки, созданные снаружи.
-    std::vector<Track*> m_tracks{};
+    // Агрегация: weak_ptr — не владеет, не продлевает жизнь треков.
+    std::vector<std::weak_ptr<Track>> m_tracks{};
 
 public:
     Playlist(std::uint64_t id,
@@ -51,10 +52,10 @@ public:
     [[nodiscard]] std::string_view GetTitle() const { return m_title; }
     [[nodiscard]] std::string_view GetDescription() const { return m_description; }
     [[nodiscard]] PlaylistState GetState() const { return m_state; }
-    [[nodiscard]] std::size_t GetTrackCount() const { return m_tracks.size(); }
-    [[nodiscard]] const Track* GetTrackAt(std::size_t index) const;
+    [[nodiscard]] std::size_t GetTrackCount() const;
+    [[nodiscard]] std::shared_ptr<Track> GetTrackAt(std::size_t index) const;
 
-    bool AddTrack(Track& track);
+    bool AddTrack(const std::shared_ptr<Track>& track);
     bool RemoveTrack(std::uint64_t trackId);
     bool Publish();
     bool Unpublish();
