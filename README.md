@@ -52,9 +52,9 @@ python -m bot.main
 
 ### Сборка и запуск
 
-cmake -S . -B build
-cmake --build build
-./build/lab02
+cmake -S . -B build;
+cmake --build build;
+./build/lab02;
 
 ## Lab 03 — Part 2: C++ smart pointers
 
@@ -71,7 +71,7 @@ No `new` or `delete` remains in the project.
 
 ### Build & run
 
-cmake -S . -B build
-cmake --build build
-./build/lab03            # Linux / macOS
-.\build\Debug\lab03.exe  # Windows (Visual Studio generator)
+cmake -S . -B build;
+cmake --build build;
+./build/lab03;            # Linux / macOS
+.\build\Debug\lab03.exe;  # Windows (Visual Studio generator)
