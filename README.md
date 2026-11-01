@@ -75,7 +75,7 @@ std::weak_ptr — lock() работает, пока жив объект, и во
 Проверка: 'grep -rn "\bnew\b|\bdelete\b" src/ include/'
 
 Как проверить
-cmake -S . -B build
-cmake --build build
-./build/lab03            # Linux/macOS
-.\build\Debug\lab03.exe  # Windows
+cmake -S . -B build;
+cmake --build build;
+./build/lab03;            # Linux/macOS
+.\build\Debug\lab03.exe ; # Windows
