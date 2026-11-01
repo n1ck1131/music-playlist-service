@@ -37,7 +37,7 @@ pip install -r requirements.txt
 python -m bot.main
 
 -----------------------------
-## Lab 02 — Classes, composition and aggregation
+## Lab_2 — Classes, composition and aggregation
 
 Три класса предметной области:
 
@@ -56,22 +56,26 @@ cmake -S . -B build;
 cmake --build build;
 ./build/lab02;
 
-## Lab 03 — Part 2: C++ smart pointers
+## Lab_3 — Часть 2: C++ умные указатели
 
-### Ownership
+Что сделано:
+Playlist::m_tracks переведён с std::vector<Track*> на std::vector<std::weak_ptr>
+Track::m_audioFile остаётся AudioFile по значению (композиция из ЛР2)
 
-- `Track::m_audioFile` — `AudioFile` **by value** (composition, unchanged from Lab 02).
-- `Playlist::m_tracks` — `std::vector<std::weak_ptr<Track>>` (aggregation, does not extend lifetime).
-- In `main`:
-  - `std::unique_ptr<Track>` — single owner, object destroyed at block exit;
-  - `std::vector<std::shared_ptr<Track>>` — shared ownership, `use_count()` grows and shrinks;
-  - `std::vector<std::unique_ptr<Track>>` — array of unique owners.
+В main.cpp:
+std::unique_ptr — один владелец, уничтожение при выходе из блока;
+передача владения через std::move;
+std::shared_ptr — use_count() растёт при копировании и падает при уничтожении копии;
+std::weak_ptr — lock() работает, пока жив объект, и возвращает nullptr после уничтожения;
+массивы: std::vector<std::unique_ptr> и std::vector<std::shared_ptr>
 
-No `new` or `delete` remains in the project.
+Чего в проекте нет:
+ни одного 'new';
+ни одного 'delete'.
+Проверка: 'grep -rn "\bnew\b|\bdelete\b" src/ include/'
 
-### Build & run
-
-cmake -S . -B build;
-cmake --build build;
-./build/lab03;            # Linux / macOS
-.\build\Debug\lab03.exe;  # Windows (Visual Studio generator)
+Как проверить
+cmake -S . -B build
+cmake --build build
+./build/lab03            # Linux/macOS
+.\build\Debug\lab03.exe  # Windows
