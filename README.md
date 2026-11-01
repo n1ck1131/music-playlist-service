@@ -56,3 +56,24 @@ python -m bot.main
 cmake -S . -B build
 cmake --build build
 ./build/lab02
+
+## Lab 03 — Part 2: C++ smart pointers
+
+### Ownership
+
+- `Track::m_audioFile` — `AudioFile` **by value** (composition, unchanged from Lab 02).
+- `Playlist::m_tracks` — `std::vector<std::weak_ptr<Track>>` (aggregation, does not extend lifetime).
+- In `main`:
+  - `std::unique_ptr<Track>` — single owner, object destroyed at block exit;
+  - `std::vector<std::shared_ptr<Track>>` — shared ownership, `use_count()` grows and shrinks;
+  - `std::vector<std::unique_ptr<Track>>` — array of unique owners.
+
+No `new` or `delete` remains in the project.
+
+### Build & run
+
+```bash
+cmake -S . -B build
+cmake --build build
+./build/lab03            # Linux / macOS
+.\build\Debug\lab03.exe  # Windows (Visual Studio generator)
