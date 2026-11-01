@@ -37,7 +37,7 @@ pip install -r requirements.txt
 python -m bot.main
 
 -----------------------------
-## Lab_2 — Classes, composition and aggregation
+## Lab_2 - Classes, composition and aggregation
 
 Три класса предметной области:
 
@@ -56,7 +56,7 @@ cmake -S . -B build;
 cmake --build build;
 ./build/lab02;
 
-## Lab_3 — Часть 2: C++ умные указатели
+## Lab_3 - Часть 2: C++ умные указатели
 
 Что сделано:
 Playlist::m_tracks переведён с std::vector<Track*> на std::vector<std::weak_ptr>
