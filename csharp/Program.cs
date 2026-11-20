@@ -62,6 +62,27 @@ GC.Collect();
 Console.WriteLine("After GC.Collect(): finalizer should have run");
 Console.WriteLine($"Weak reference alive: {watcher.TryGetTarget(out _)}");
 
+// Лабораторная номер 4
+Console.WriteLine("\n===== Lab 4: inheritance =====");
+
+var pl1 = new Playlist(10, "Rock", "Best", 10);
+var pl2 = new Playlist(11, "Chill", "Relax", 10);
+
+var user1 = new Listener("Lev", pl1, "Premium");
+var user2 = new Author("Bob", pl2, "Rock fan #rock");
+
+Console.WriteLine(user1.Describe());
+Console.WriteLine(user2.Describe());
+
+// Клонирование
+var cloned = user1.Clone();
+Console.WriteLine($"Original playlist: {user1.PersonalPlaylist.Title}");
+Console.WriteLine($"Cloned playlist:   {cloned.PersonalPlaylist.Title}");
+
+// Разумное использование using (для вывода ID)
+using var log4Log = new SessionLog("Lab4");
+log4Log.Write($"Total users created: {user2.Id}");
+
 Console.WriteLine("\n===== End =====");
 
 [MethodImpl(MethodImplOptions.NoInlining)]
@@ -81,3 +102,5 @@ sealed class GcProbe
     }
     ~GcProbe() => Console.WriteLine($"[GcProbe] finalized: {Name}");
 }
+
+
