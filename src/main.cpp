@@ -1,6 +1,9 @@
 #include "playlist.hpp"
 #include "track.hpp"
 
+#include "author.hpp"
+#include "listener.hpp"
+
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -23,6 +26,36 @@ void PrintPlaylistState(const Playlist& playlist, const char* prefix)
               << "', state=" << static_cast<int>(playlist.GetState())
               << ", alive tracks=" << playlist.GetTrackCount() << '\n';
 }
+
+// Функция для ЛР4
+void RunLab4Demo()
+{
+    std::cout << "\n\n---------- LAB 4: inheritance  ----------\n";
+    
+    auto pl1 = std::make_shared<music::Playlist>(1, "Rock Hits", "Best rock", 10);
+    auto pl2 = std::make_shared<music::Playlist>(2, "Chill", "Relax", 10);
+
+    std::vector<std::unique_ptr<music::BaseUser>> users;
+    users.push_back(std::make_unique<music::Listener>("Lev", pl1, "Premium"));
+    users.push_back(std::make_unique<music::Author>("Bob", pl2, "Rock fan #rock #guitar"));
+
+    std::cout << "\n--- Polymorphism ---\n";
+    for (const auto& u : users) {
+        std::cout << u->Describe() << "\n";
+    }
+
+    std::cout << "\n--- Deep Copy (Clone) ---\n";
+    auto clonedListener = users[0]->Clone();
+    std::cout << "Original playlist: " << users[0]->GetPlaylist()->GetTitle() << "\n";
+    std::cout << "Cloned playlist:   " << clonedListener->GetPlaylist()->GetTitle() << "\n";
+
+    std::cout << "\n--- Virtual Destructor test ---\n";
+    {
+        std::unique_ptr<music::BaseUser> temp = std::make_unique<music::Listener>("Temp", nullptr, "Free");
+        std::cout << "Deleting Listener via BaseUser pointer...\n";
+    } // Здесь сработает ~BaseUser
+}
+
 
 } // namespace
 
@@ -135,6 +168,9 @@ int main()
     auto other = std::make_shared<Playlist>(104, "Other", "New", 5);
     other->AddTrack(blockable);    // отказ: трек недоступен
 
+    RunLab4Demo(); // Вызов новой лабы
+
     PrintSeparator("End of demonstration");
+
     return 0;
 }
